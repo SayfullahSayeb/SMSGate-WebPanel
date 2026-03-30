@@ -16,3 +16,8 @@ composer install
 ## Usage
 
 Access the panel via your local server (e.g., Laragon) and navigate to `/login`.
+username: admin
+pass: admin123
+
+
+device and webhooks bugs
