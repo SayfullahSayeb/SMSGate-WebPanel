@@ -1,0 +1,34 @@
+# Disable directory listing
+Options -Indexes
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# Enable URL rewriting
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Skip existing files and directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Route clean URLs to app folder
+    RewriteRule ^login$ /app/login.php [L,QSA]
+    RewriteRule ^logout$ /app/logout.php [L,QSA]
+    RewriteRule ^send$ /app/send.php [L,QSA]
+    RewriteRule ^queue$ /app/queue.php [L,QSA]
+    RewriteRule ^settings$ /app/settings.php [L,QSA]
+    RewriteRule ^history$ /app/history.php [L,QSA]
+    RewriteRule ^templates$ /app/templates.php [L,QSA]
+    RewriteRule ^bulk$ /app/bulk.php [L,QSA]
+    RewriteRule ^contacts$ /app/contacts.php [L,QSA]
+    RewriteRule ^groups$ /app/groups.php [L,QSA]
+    RewriteRule ^devices$ /app/devices.php [L,QSA]
+    RewriteRule ^automation$ /app/automation.php [L,QSA]
+    RewriteRule ^(index|dashboard)$ /app/index.php [L,QSA]
+    RewriteRule ^$ /app/login.php [L,R=301]
+</IfModule>
